@@ -41,6 +41,19 @@ class User(AbstractBaseUser, UUIDModel, PermissionsMixin):
                                     help_text='Designates whether this user should be treated as '
                                               'active. Unselect this instead of deleting accounts.')
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    hadm_id = models.CharField(_('hadm_id'), max_length=10, null=True, blank=True)
+    admittime = models.DateTimeField(_('admittime'), null=True, blank=True)
+    dischtime = models.DateTimeField(_('dischtime'), null=True, blank=True)
+    deathtime = models.DateTimeField(_('deathtime'), null=True, blank=True)
+    admission_type = models.CharField(_('admission_type'), null=True, blank=True, max_length=30)
+    admission_location = models.TextField(_('admission_location'), null=True, blank=True)
+    discharge_location = models.TextField(_('discharge_location'), null=True, blank=True)
+    insurance = models.CharField(_('insurance'), null=True, blank=True, max_length=100)
+    language = models.CharField(_('language'), null=True, blank=True, max_length=100)
+    religion = models.CharField(_('religion'), null=True, blank=True, max_length=100)
+    martial_status = models.CharField(_('martial_status'), null=True, blank=True, max_length=100)
+    ethnicity = models.CharField(_('ethnicity'), null=True, blank=True, max_length=150)
+    diagnosis = models.CharField(_('diagnosis'), null=True, blank=True, max_length=250)
 
     USERNAME_FIELD = 'email'
     objects = UserManager()

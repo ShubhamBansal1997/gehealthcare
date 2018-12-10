@@ -28,6 +28,9 @@ INSTALLED_APPS = (
 
     'gehealthcare.base',
     'gehealthcare.users',
+    'gehealthcare.prescriptions',
+    'gehealthcare.labevents',
+    'gehealthcare.diagnoses',
 
     'rest_framework',  # http://www.django-rest-framework.org/
     'rest_framework_swagger',
