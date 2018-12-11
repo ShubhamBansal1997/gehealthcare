@@ -54,6 +54,9 @@ class User(AbstractBaseUser, UUIDModel, PermissionsMixin):
     martial_status = models.CharField(_('martial_status'), null=True, blank=True, max_length=100)
     ethnicity = models.CharField(_('ethnicity'), null=True, blank=True, max_length=150)
     diagnosis = models.CharField(_('diagnosis'), null=True, blank=True, max_length=250)
+    state = models.CharField(_('state'), null=True, blank=True, max_length=150)
+    district = models.CharField(_('district'), null=True, blank=True, max_length=150)
+    statement = models.TextField(_('statement'), null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     objects = UserManager()

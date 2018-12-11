@@ -14,6 +14,12 @@ from django.views.generic import TemplateView
 from . import api_urls
 from .base import views as base_views
 from .base.api import schemas as api_schemas
+from .users import views
+from .prescriptions.views import eprescription
+from .diagnoses.views import diagnoses
+from .labevents.views import labevents
+from rest_framework_swagger.views import get_swagger_view
+schema_view = get_swagger_view(title='API View')
 
 admin.site.site_title = admin.site.site_header = 'gehealthcare Administration'
 handler500 = base_views.server_error
@@ -21,8 +27,13 @@ handler500 = base_views.server_error
 # Top Level Pages
 # ==============================================================================
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
+    url(r'^$', views.authuser, name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    url(r'^login/$', views.authuser, name='login'),
+    url(r'^profile/$', views.profile, name='profile'),
+    url(r'^eprescription/$', eprescription, name='eprescription'),
+    url(r'^diagnoses/$', diagnoses, name='diagnoses'),
+    url(r'^labevents/$', labevents, name='labevents')
     # Your stuff: custom urls go here
 ]
 
@@ -42,7 +53,7 @@ urlpatterns += [
 if settings.API_DEBUG:
     urlpatterns += [
         # Browsable API
-        url('^schema/$', api_schemas.schema_view, name='schema'),
+        url(r'^schema/$', api_schemas.schema_view, name='schema'),
         url(r'^api-playground/$', api_schemas.swagger_schema_view, name='api-playground'),
         url(r'^api/auth-n/', include('rest_framework.urls', namespace='rest_framework')),
     ]

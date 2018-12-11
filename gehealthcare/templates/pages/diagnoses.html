@@ -1,0 +1,54 @@
+{% extends 'pages/base.html' %}
+{% load static i18n %}
+{% block title %}{% trans 'Home' %} • {{ block.super }}{% endblock title %}
+{% block body_classes %}{{ block.super}} page-home {% endblock body_classes %}
+{% block content %}
+    <div class="page">
+      <div class="page-main">
+        {% include 'elements/header.html' %}
+
+        {% include 'elements/menu.html' %}
+        <div class="my-3 my-md-5">
+			<div class="container">
+            <div class="page-header">
+              <h1 class="page-title">
+                Diagnoses
+              </h1>
+            </div>
+            <div class="row row-cards row-deck">
+              <div class="col-12">
+                <div class="card">
+                  <div class="table-responsive">
+                    <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Symptom Name</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      	{% for diagnose in diagnoses %}
+                        <tr>
+                          <td>
+                            <div>
+                            </div>
+                          </td>
+                          <td>
+	                          <div>{{ diagnose.ic.ic_name }}
+	                          </div>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                       
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>     	
+        </div>
+      </div>
+      {% include 'elements/footer.html' %}
+    </div>
+{% endblock content %}
