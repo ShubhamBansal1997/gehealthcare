@@ -17,6 +17,9 @@
                   <div class="card-body text-center">
                     <img class="card-profile-img" src="/static/demo/faces/male/16.jpg">
                     <h3 class="mb-3">@{{request.user.hadm_id}}</h3>
+                    <p class="mb-4">
+                      {{request.user.statement}}
+                    </p>
                     {% if request.user.deathtime != '' %}
                     <button class="btn btn-outline-danger btn-sm">
                        Died on {{request.user.deathtime}}

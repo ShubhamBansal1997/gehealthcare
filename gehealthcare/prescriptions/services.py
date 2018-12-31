@@ -204,15 +204,31 @@ def diet_plan():
 	        l.append('Asthama')
 	    
 	    if len(l)==0:
-	        text="Stay fit. Take healthy food. Drink a lot of water. Exercise daily!"
+	        text="Hey! Stay fit. Take healthy food. These are some health tips.  # Copy your kitty: Learn to do stretching exercises when you wake up."
+	        text+="It boosts circulation and digestion,and eases back pain. # Don’t skip breakfast. Studies show that eating a proper breakfast is one of the most positive things you can do if you are trying to lose weight. Breakfast skippers tend to gain weight."
+	        text+="A balanced breakfast includes fresh fruit or fruit juice, a high-fibre breakfast cereal, low-fat milk or yoghurt, wholewheat toast, and a boiled egg.  # Brush up on hygiene. Many people don't know how to brush their teeth properly. Improper brushing can cause as much damage to the teeth and gums as not brushing at all. Lots of people don’t brush for long enough, don’t floss and don’t see a dentist regularly. Hold your toothbrush in the same way that would hold a pencil, and brush for at least two minutes. "
 	    else:
-	        text=" Your diet should contain "
+	        text="Hey! Your area is prone to many diseases and you should take care of yourself. We recommend your diet should contain "
 	        for i in range(len(l)):
 	            for j in dictt[l[i]]:
 	                diss.add(j)
 	        for i in diss:
-	            text=text+i+' '
+	            text=text+" "+i+" "
 	#     print(text)
+	        for j in diss:
+	            if j=="VitaminC":
+	                text+="  You must have Broccoli, Brussels sprouts, and cauliflower,Tomatoes and tomato juice"
+	                break
+	            if j=="VitaminBComplex":
+	                text+="  For example, liver, legumes, dried beans and fresh orange juice. Also, fortified bread, cereals and rice is loaded with folate. Vitamin B12 (Cobalamin): Natural sources of vitamin B12 are found in fish, red meat, eggs, poultry, milk, milk products and cheese. Soy products and cereals also have high vitamin B12 content."
+	                break
+	            if j=="Iron" or j=="Zinc":
+	                text+="  green vegetables, for example spinach, silverbeet and broccoli.lentils and beans.nuts and seeds.grains, for example whole wheat, brown rice and fortified breakfast cereals.dried fruit."
+	                break
+	            else:
+	                text+="  you must have Eggs, milk, carrots, sweet potatoes, and cantaloupe Oranges, strawberries, tomatoes, kiwi, broccoli, and red and green bell peppers"
+	                break
+	    
 	    output.append(text)
 	    
 	output=pd.DataFrame(output)
@@ -222,7 +238,7 @@ def diet_plan():
 		try:
 			#print(data_final['HADM_ID'][i])
 			test = str(data_final['HADM_ID'][i])
-			#print(data_final[0][i])
+			print(data_final[0][i])
 			user = User.objects.get(hadm_id=test)
 
 			user.statement = data_final[0][i]

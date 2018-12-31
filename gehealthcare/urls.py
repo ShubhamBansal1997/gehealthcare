@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^$', views.authuser, name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
     url(r'^login/$', views.authuser, name='login'),
+    url(r'^logout/$', views.logout_user, name='logout'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^eprescription/$', eprescription, name='eprescription'),
     url(r'^diagnoses/$', diagnoses, name='diagnoses'),
